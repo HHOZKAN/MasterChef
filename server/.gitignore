@@ -1,0 +1,3 @@
+# Ignore les dossiers spécifiques à IGT
+node_modules/
+
