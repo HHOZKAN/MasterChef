@@ -1,24 +1,26 @@
+
+
 import mongoose from "mongoose";
 
 const userSchema = mongoose.Schema({
-    nom: {
+    name: {
         type: String,
         required: true
     },
-    mail: {
+    email: {
         type: String,
         required: true,
         unique: true
     },
-    mdp: {
+    password: {
         type: String,
         required: true
     },
-    niveau: {
-        type: Number,
+    isAdmin: {
+        type: Boolean,
         required: true,
-        default: 1
-    }
+        default: false
+    },
 },
     {
         timestamps: true,
