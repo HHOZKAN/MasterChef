@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const courseSchema = mongoose.Schema({
+const coursesSchema = mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -24,6 +24,6 @@ const courseSchema = mongoose.Schema({
     }
 )
 
-const Course = mongoose.model('Course', courseSchema);
+const Courses = mongoose.model('Course', coursesSchema);
 
-export default Course;
+export default Courses;

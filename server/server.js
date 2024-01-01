@@ -1,7 +1,10 @@
 import express from 'express';
-import cours from './data/Product.js';
+import cours from './data/Cours.js';
 import dotenv from 'dotenv';
 import connectDatabase from './config/MongoDb.js';
+import ImportData from './DataImport.js';
+import coursRoute from './Routes/CoursRoutes.js';
+import { errorHandler, notFound } from './Middleware/Error.js';
 
 dotenv.config();
 
@@ -9,20 +12,14 @@ connectDatabase();
 
 const app = express();
 
-// ! LOAD PRODUCT FROM SERVER
-app.get("/api/products", (req, res) => {
-    res.json(cours)
-});
+// API
 
-// ! SINGLE PRODUCT FROM SERVER
-app.get("/api/products/:id", (req, res) => {
-    const cour = cours.find((p) => p._id === req.params.id);
-    res.json(cour)
-});
+app.use('/api/import', ImportData);
+app.use("/api/cours", coursRoute);
 
-app.get("/", (req, res) => {
-    res.send("Api is running...")
-});
+// ERROR HANDLER MIDDLEWARES
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT;
 
