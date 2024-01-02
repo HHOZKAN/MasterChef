@@ -27,3 +27,4 @@ const exerciseSchema = mongoose.Schema({
 const Exercise = mongoose.model('Exercise', exerciseSchema);
 
 export default Exercise;
+ 
