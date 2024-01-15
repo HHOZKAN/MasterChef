@@ -25,10 +25,19 @@ const userSchema = mongoose.Schema({
         timestamps: true,
     }
 )
-// Login
+//! Login
 userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 }
+
+//! Register
+userSchema.pre("save", async function (newt) {
+    if (!this.isModified("password")) {
+        next();
+    }
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+})
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);
 
