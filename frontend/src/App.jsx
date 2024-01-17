@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import './App.css'
-import Cours from "../components/Cours"
-import YourComponent from '../components/Cours'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from '../components/Home';
+import Login from '../components/Login';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-   <div>
-    Hasan
-    <YourComponent />
-   </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

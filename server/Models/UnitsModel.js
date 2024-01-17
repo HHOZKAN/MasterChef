@@ -10,7 +10,6 @@ const unitsSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Exercise'
     }]
-    // Ajoutez d'autres champs si nécessaire
 });
 
 const Units = mongoose.model('Units', unitsSchema);
