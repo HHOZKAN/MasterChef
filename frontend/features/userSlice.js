@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const loginUser = createAsyncThunk('user/login', async (userCredentials, { rejectWithValue }) => {
+export const loginUser = createAsyncThunk('user/login', async (userData, { rejectWithValue }) => {
     try {
-        const { data } = await axios.post('/api/users/login', userCredentials);
+        const { data } = await axios.post('http://localhost:5000/api/users/login', userData);
         return data;
     } catch (err) {
         return rejectWithValue(err.response.data);
@@ -33,23 +33,31 @@ export const getUserProfile = createAsyncThunk('user/profile', async (_, { rejec
     }
 });
 
-// Slice
 const userSlice = createSlice({
     name: 'user',
-    initialState: {},
-    reducers: {},
+    initialState: {
+        isAuthenticated: false,
+        token: null,
+    },
+    reducers: {
+        logoutUser: (state) => {
+            state.isAuthenticated = false;
+            state.token = null;
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(loginUser.fulfilled, (state, action) => {
-                return action.payload;
+                state.isAuthenticated = true;
+                state.token = action.payload.token;
             })
-            .addCase(registerUser.fulfilled, (state, action) => {
-                return action.payload;
-            })
+            // Gérer le token pour registerUser.fulfilled si nécessaire
             .addCase(getUserProfile.fulfilled, (state, action) => {
                 return action.payload;
             });
     },
 });
+
+export const { logoutUser } = userSlice.actions;
 
 export default userSlice.reducer;
