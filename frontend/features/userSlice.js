@@ -56,11 +56,13 @@ const userSlice = createSlice({
     },
     reducers: {
         logoutUser: (state) => {
+            // Suprime le token du local storage
+            localStorage.removeItem('token');
             state.isAuthenticated = false;
             state.token = null;
         },
         restoreUser: (state, action) => {
-            state.isAuthenticated = true; // mettez isAuthenticated à true
+            state.isAuthenticated = true; 
             state.token = action.payload;
         },
     },
@@ -73,7 +75,6 @@ const userSlice = createSlice({
                 localStorage.setItem('token', action.payload.token);
             })
 
-            // Gérer le token pour registerUser
             .addCase(registerUser.fulfilled, (state, action) => {
                 state.isAuthenticated = true;
                 state.token = action.payload.token;

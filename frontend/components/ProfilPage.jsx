@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile } from '../features/userSlice';
 
+
 function ProfilePage() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -37,7 +38,7 @@ function ProfilePage() {
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                     Username
                 </label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value={user} onChange={(e) => setUsername(e.target.value)} placeholder="Username" required />
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value={user} onChange={(e) => setName(e.target.value)} placeholder="Username" required />
             </div>
             <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
