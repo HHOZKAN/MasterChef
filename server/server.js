@@ -14,7 +14,8 @@ connectDatabase();
 const app = express();
 app.use(express.json());
 
-app.use(cors()); // Utilisez le middleware CORS ici
+// CORS GERE LES REQUETES ENTRE LE FRONT ET LE BACK
+app.use(cors()); 
 
 // API
 app.use('/api/import', ImportData);

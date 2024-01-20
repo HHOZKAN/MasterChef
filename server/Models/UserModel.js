@@ -31,7 +31,7 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 }
 
 //! Register
-userSchema.pre("save", async function (newt) {
+userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) {
         next();
     }

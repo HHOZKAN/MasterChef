@@ -32,6 +32,8 @@ const Login = () => {
                 <button type="submit">Se connecter</button>
             </form>
             {error && <p>{error}</p>}
+            <button onClick={() => navigate('/signup')}>Créer un compte</button>
+
         </div>
     );
 };
