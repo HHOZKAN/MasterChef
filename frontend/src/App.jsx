@@ -7,6 +7,7 @@ import PrivateRoute from '../components/PrivateRoute'; // Assurez-vous que le ch
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { restoreUser } from '../features/userSlice';
+import Cours from '../components/Cours';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/cours" element={<Cours />} />
         <Route path="/register" element={<CreateAccountPage />} />
         <Route path="/profil" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
       </Routes>
